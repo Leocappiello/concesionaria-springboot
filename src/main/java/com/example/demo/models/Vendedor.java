@@ -15,12 +15,38 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "vendedor")
-public class Vendedor extends Cliente{
+public class Vendedor extends Base{
+    @Column(name = "nombre")
+    private String nombre;
+
+    @Column(name = "apellido")
+    private String apellido;
+
+    @Column(name = "telefono")
+    private String telefono;
+
+    @Column(name = "dni")
+    private int dni;
+
+    @Column(name = "razonSocial")
+    private String razonSocial;
+
+    @Column(name = "cuit")
+    private long cuit;
+
+    @Column(name = "estado")
+    private boolean estado;
+
     @Column(name = "legajo")
-    private long legajo;
+    private int legajo;
 
     //
-    @OneToMany(mappedBy = "vendedor", cascade = CascadeType.ALL)
-    private List<Venta> venta = new ArrayList<Venta>();
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "pais_id")
+    private Pais pais;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "domicilio_id")
+    private Domicilio domicilio;
 
 }

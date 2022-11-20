@@ -20,6 +20,9 @@ public class Modelo extends Base{
     @Column(name="version")
     private String version;
 
+    @Column(name = "urlImage")
+    private String urlImage;
+
     //
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_marca")
